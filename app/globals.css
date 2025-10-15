@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+@theme {
+  --color-space-black: #0a0e27;
+  --color-space-navy: #1a1f3a;
+  --color-space-purple: #6366f1;
+  --color-space-cyan: #06b6d4;
+  --color-space-glow: #8b5cf6;
+  
+  --shadow-glow: 0 0 20px rgba(139, 92, 246, 0.5);
+  
+  --animate-fade-in: fade-in 1s ease-out;
+  --animate-slide-up: slide-up 0.8s ease-out;
+  --animate-glow: glow 2s ease-in-out infinite;
+  --animate-pulse-slow: pulse-slow 3s ease-in-out infinite;
+}
+
+body {
+  background: linear-gradient(to bottom, #0a0e27, #1a1f3a);
+  color: white;
+  min-height: 100vh;
+}
+
+/* Animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(99, 102, 241, 0.8), 0 0 30px rgba(139, 92, 246, 0.6);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Animated stars background */
+.stars,
+.stars2,
+.stars3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+.stars {
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, white, transparent),
+    radial-gradient(2px 2px at 60px 70px, white, transparent),
+    radial-gradient(1px 1px at 50px 50px, white, transparent),
+    radial-gradient(1px 1px at 130px 80px, white, transparent),
+    radial-gradient(2px 2px at 90px 10px, white, transparent);
+  background-size: 200px 200px;
+  animation: stars-move 50s linear infinite;
+}
+
+.stars2 {
+  background-image: 
+    radial-gradient(1px 1px at 40px 60px, white, transparent),
+    radial-gradient(1px 1px at 110px 90px, white, transparent),
+    radial-gradient(1px 1px at 150px 30px, white, transparent);
+  background-size: 250px 250px;
+  animation: stars-move 100s linear infinite;
+}
+
+.stars3 {
+  background-image: 
+    radial-gradient(1px 1px at 75px 125px, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(1px 1px at 180px 25px, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(1px 1px at 40px 150px, rgba(255, 255, 255, 0.5), transparent);
+  background-size: 300px 300px;
+  animation: stars-move 150s linear infinite;
+}
+
+@keyframes stars-move {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-200px);
+  }
+}
+
+/* Enhanced glow effects */
+.shadow-glow {
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+}
+
+.hover\:shadow-glow:hover {
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.8);
+}
+
+/* Smooth scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(26, 31, 58, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.7);
+}
