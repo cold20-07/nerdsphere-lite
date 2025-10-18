@@ -30,11 +30,11 @@ function Message({ content, timestamp }: MessageProps) {
   };
 
   return (
-    <div className="bg-space-navy/50 backdrop-blur-sm rounded-lg p-3 sm:p-4 mb-2 sm:mb-3 border border-space-purple/20 hover:border-space-purple/40 hover:shadow-glow transition-all duration-300 animate-fade-in">
+    <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-3 sm:p-4 mb-2 sm:mb-3 border border-purple-500/30 hover:border-purple-400/50 hover:shadow-[0_8px_32px_0_rgba(139,92,246,0.3)] transition-all duration-300 animate-fade-in">
       <p className="text-gray-100 text-sm sm:text-base leading-relaxed break-words">
         {content}
       </p>
-      <p className="text-space-cyan/60 text-xs mt-1.5 sm:mt-2">
+      <p className="text-purple-400/70 text-xs mt-1.5 sm:mt-2 lowercase">
         {formatRelativeTime(timestamp)}
       </p>
     </div>

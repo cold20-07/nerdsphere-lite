@@ -28,7 +28,7 @@ export default function ChatPage() {
       try {
         setIsLoading(true);
         const supabase = createBrowserClient();
-        
+
         const response = await supabase
           .from('messages')
           .select('*')
@@ -160,7 +160,7 @@ export default function ChatPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-space-gradient flex flex-col relative overflow-hidden">
+    <div className="min-h-screen flex flex-col relative overflow-hidden bg-gradient-to-b from-black via-space-black to-purple-950">
       {/* Animated background stars */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="stars"></div>
@@ -168,26 +168,47 @@ export default function ChatPage() {
         <div className="stars3"></div>
       </div>
 
+      {/* Black hole sphere at bottom */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 pointer-events-none">
+        {/* Outer glow rings with breathing animation */}
+        <div className="absolute inset-0 -inset-32">
+          <div className="absolute inset-0 rounded-full bg-gradient-radial from-purple-500/30 via-purple-600/20 to-transparent blur-3xl animate-breathe"></div>
+          <div className="absolute inset-0 rounded-full bg-gradient-radial from-pink-500/20 via-purple-500/10 to-transparent blur-2xl animate-breathe" style={{ animationDelay: '1s' }}></div>
+        </div>
+
+        {/* Black hole sphere */}
+        <div className="relative w-96 h-96 rounded-full bg-gradient-radial from-black via-purple-950 to-black shadow-[0_0_100px_rgba(168,85,247,0.4)]">
+          {/* Inner dark core */}
+          <div className="absolute inset-12 rounded-full bg-black shadow-[inset_0_0_60px_rgba(0,0,0,0.9)]"></div>
+
+          {/* Event horizon ring */}
+          <div className="absolute inset-0 rounded-full border-2 border-purple-500/30 animate-breathe"></div>
+          <div className="absolute inset-6 rounded-full border border-purple-400/20 animate-breathe" style={{ animationDelay: '0.5s' }}></div>
+        </div>
+      </div>
+
+      {/* Purple horizon glow */}
+      <div className="absolute bottom-0 left-0 right-0 h-96 bg-gradient-to-t from-purple-900/40 via-purple-500/10 to-transparent pointer-events-none"></div>
+
       {/* Header */}
-      <header className="border-b border-space-navy p-3 sm:p-4 relative z-10 bg-space-black/30 backdrop-blur-sm">
+      <header className="border-b border-purple-500/20 p-3 sm:p-4 relative z-10 bg-black/40 backdrop-blur-xl">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center justify-between gap-2">
             <div className="flex-1 min-w-0">
-              <h1 className="text-xl sm:text-2xl font-bold text-white truncate">NerdSphere Chat</h1>
-              <p className="text-gray-400 text-xs sm:text-sm hidden sm:block">Anonymous. Unfiltered. Ephemeral.</p>
+              <h1 className="text-xl sm:text-2xl font-bold text-white truncate lowercase">nerdsphere chat</h1>
+              <p className="text-gray-400 text-xs sm:text-sm hidden sm:block lowercase">anonymous. unfiltered. ephemeral.</p>
             </div>
-            
+
             {/* Connection Status Indicator */}
             <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
-              <div className={`w-2 h-2 rounded-full ${
-                connectionStatus === 'connected' ? 'bg-green-500' :
+              <div className={`w-2 h-2 rounded-full ${connectionStatus === 'connected' ? 'bg-green-500' :
                 connectionStatus === 'connecting' ? 'bg-yellow-500 animate-pulse' :
-                'bg-red-500'
-              }`} />
-              <span className="text-xs sm:text-sm text-gray-400 hidden sm:inline">
-                {connectionStatus === 'connected' ? 'Connected' :
-                 connectionStatus === 'connecting' ? 'Connecting...' :
-                 'Disconnected'}
+                  'bg-red-500'
+                }`} />
+              <span className="text-xs sm:text-sm text-gray-400 hidden sm:inline lowercase">
+                {connectionStatus === 'connected' ? 'connected' :
+                  connectionStatus === 'connecting' ? 'connecting...' :
+                    'disconnected'}
               </span>
             </div>
           </div>
@@ -199,7 +220,7 @@ export default function ChatPage() {
         <div className="flex-1 flex items-center justify-center relative z-10">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-space-purple mx-auto mb-4 shadow-glow"></div>
-            <p className="text-gray-400">Loading messages...</p>
+            <p className="text-gray-400 lowercase">loading messages...</p>
           </div>
         </div>
       ) : (
@@ -210,7 +231,7 @@ export default function ChatPage() {
           </div>
 
           {/* Message Input */}
-          <div className="relative z-10 bg-space-black/30 backdrop-blur-sm">
+          <div className="relative z-10 bg-black/40 backdrop-blur-xl border-t border-purple-500/20">
             <MessageInput
               onSendMessage={handleSendMessage}
               isRateLimited={isRateLimited}

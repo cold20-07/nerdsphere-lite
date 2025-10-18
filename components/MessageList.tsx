@@ -34,8 +34,8 @@ export default function MessageList({ messages }: MessageListProps) {
     >
       {messages.length === 0 ? (
         <div className="flex items-center justify-center h-full animate-fade-in px-4">
-          <p className="text-gray-400 text-center text-sm sm:text-base">
-            No messages yet. Be the first to break the silence...
+          <p className="text-gray-400 text-center text-sm sm:text-base lowercase">
+            no messages yet. be the first to break the silence...
           </p>
         </div>
       ) : (

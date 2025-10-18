@@ -53,16 +53,16 @@ export default function MessageInput({
   const isDisabled = isRateLimited || isSubmitting || !debouncedContent.trim() || content.length > MAX_CHARS;
 
   return (
-    <form onSubmit={handleSubmit} className="border-t border-space-navy p-3 sm:p-4 transition-all duration-300">
+    <form onSubmit={handleSubmit} className="p-3 sm:p-4 transition-all duration-300">
       <div className="max-w-4xl mx-auto">
         <div className="relative">
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            placeholder="Type your message..."
+            placeholder="type your message..."
             maxLength={MAX_CHARS}
             rows={3}
-            className="w-full bg-space-navy text-white rounded-lg p-3 pr-16 sm:pr-20 resize-none focus:outline-none focus:ring-2 focus:ring-space-purple placeholder-gray-500 transition-all duration-200 text-sm sm:text-base"
+            className="w-full bg-white/5 backdrop-blur-xl border border-purple-500/30 text-white rounded-2xl p-3 pr-16 sm:pr-20 resize-none focus:outline-none focus:ring-2 focus:ring-purple-500/50 placeholder-gray-500 transition-all duration-200 text-sm sm:text-base lowercase"
             disabled={isRateLimited || isSubmitting}
           />
           
@@ -78,14 +78,14 @@ export default function MessageInput({
           <div className="flex-1 min-h-[20px]">
             {/* Rate limit countdown */}
             {isRateLimited && (
-              <p className="text-amber-400 text-xs sm:text-sm animate-fade-in">
-                Wait {remainingTime}s
+              <p className="text-amber-400 text-xs sm:text-sm animate-fade-in lowercase">
+                wait {remainingTime}s
               </p>
             )}
             
             {/* Error messages */}
             {error && !isRateLimited && (
-              <p className="text-red-400 text-xs sm:text-sm animate-fade-in truncate">
+              <p className="text-red-400 text-xs sm:text-sm animate-fade-in truncate lowercase">
                 {error}
               </p>
             )}
@@ -95,13 +95,13 @@ export default function MessageInput({
           <button
             type="submit"
             disabled={isDisabled}
-            className={`px-5 sm:px-6 py-2.5 sm:py-2 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 active:scale-95 text-sm sm:text-base min-h-[44px] sm:min-h-0 ${
+            className={`px-5 sm:px-6 py-2.5 sm:py-2 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 active:scale-95 text-sm sm:text-base min-h-[44px] sm:min-h-0 lowercase ${
               isDisabled
-                ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
-                : 'bg-space-purple text-white hover:bg-space-glow shadow-[0_0_15px_rgba(99,102,241,0.3)] hover:shadow-glow'
+                ? 'bg-white/5 border border-gray-600/30 text-gray-400 cursor-not-allowed backdrop-blur-xl'
+                : 'bg-black/60 backdrop-blur-xl border-2 border-purple-500/50 text-white hover:border-purple-400 hover:shadow-[0_0_30px_rgba(168,85,247,0.5)]'
             }`}
           >
-            {isSubmitting ? 'Sending...' : 'Send'}
+            {isSubmitting ? 'sending...' : 'send'}
           </button>
         </div>
       </div>
