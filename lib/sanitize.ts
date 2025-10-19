@@ -1,16 +1,29 @@
 /**
- * Sanitizes user-provided content by removing HTML tags and trimming whitespace.
+ * Sanitizes user-provided content by removing HTML tags and encoding special characters.
  * This helps prevent XSS attacks and ensures clean content storage.
  * 
  * @param content - The raw content string to sanitize
  * @returns The sanitized content string
  */
 export function sanitizeContent(content: string): string {
-  // Remove HTML tags to prevent XSS
-  const withoutHtml = content.replace(/<[^>]*>/g, '');
+  // First pass: Remove all HTML tags (including malformed ones)
+  let sanitized = content.replace(/<[^>]*>?/gm, '');
+  
+  // Second pass: Remove any remaining < or > characters that might be part of incomplete tags
+  sanitized = sanitized.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  
+  // Remove script-related keywords that might bypass filters
+  sanitized = sanitized.replace(/javascript:/gi, '');
+  sanitized = sanitized.replace(/on\w+\s*=/gi, ''); // Remove event handlers like onclick=
+  
+  // Remove null bytes and other control characters
+  sanitized = sanitized.replace(/\0/g, '');
+  
+  // Normalize whitespace but preserve line breaks
+  sanitized = sanitized.replace(/\r\n/g, '\n'); // Normalize line endings
   
   // Trim whitespace
-  return withoutHtml.trim();
+  return sanitized.trim();
 }
 
 /**

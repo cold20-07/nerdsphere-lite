@@ -53,7 +53,7 @@ export default function Home() {
               <strong>no moderation.</strong> anyone can say anything. this is an experiment in digital chaos.
             </p>
             <p>
-              <strong>messages disappear after 24 hours.</strong> nothing here is permanent.
+              <strong>archived forever.</strong> your words become part of internet history.
             </p>
             <p>
               <strong>completely anonymous.</strong> no accounts, no tracking, no rules.

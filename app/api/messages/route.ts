@@ -91,7 +91,7 @@ export async function POST(request: NextRequest) {
 
     // Return success response
     return NextResponse.json(
-      { success: true, message: newMessage },
+      { success: true, data: newMessage },
       { status: 201 }
     );
 
